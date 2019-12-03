@@ -1,0 +1,9 @@
+<amb-poney [poney]="poney" 
+           (win)="handleWin($event)"
+           *ngFor="let poney of ponies; let e = even"
+           #poneyComponents
+           ambBoost
+           color="red"
+           [isColor]="e">
+</amb-poney>
+
