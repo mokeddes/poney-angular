@@ -1,0 +1,19 @@
+<br />
+<mat-toolbar color="silver"><ng-content></ng-content> </mat-toolbar>
+<mat-spinner *ngIf="!(ponies$ | async)"></mat-spinner>
+<amb-poney
+  [poney]="poney"
+  (win)="handleWin($event)"
+  *ngFor="
+    let poney of ponies$ | async | racingPipe: race.poneyIds;
+    let e = even
+  "
+  #poneyComponents
+  ambBoost
+  color="silver"
+  [isColor]="true"
+>
+</amb-poney>
+<br />
+<br />
+<br />

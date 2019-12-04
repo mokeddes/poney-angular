@@ -1,48 +1,27 @@
-import { Component, ViewChildren, QueryList, ViewEncapsulation } from '@angular/core';
-import { Poney } from './interfaces/poney';
-import { PoneyComponent } from './components/poney/poney.component';
+import { Component, ViewEncapsulation } from "@angular/core";
+import { Race } from "src/app/interfaces/race";
+import { DataService } from "./services/data.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
   encapsulation: ViewEncapsulation.Emulated
 })
 export class AppComponent {
-  title = 'formation';
+  title = "formation";
 
-  @ViewChildren('poneyComponents') poneyComponents: QueryList<PoneyComponent>
+  races: Race[];
 
-  /*
-  ngAfterViewInit(){
-    console.log(this.title)
-  }*/
-
-  ponies: Poney [] = [{
-    "id": "0",
-    "name": "namePoney anis ",
-    "img": "http://ponyracer.ninja-squad.com/assets/images/pony-green-rainbow.gif",
-    "distance": 0
-  }, {
-    "id": "1",
-    "name": "namePoney sylvain ",
-    "img": "http://ponyracer.ninja-squad.com/assets/images/pony-yellow-rainbow.gif",
-    "distance": 0
-  }, {
-    "id": "2",
-    "name": "namePoney romain ",
-    "img": "http://ponyracer.ninja-squad.com/assets/images/pony-blue-rainbow.gif",
-    "distance": 0
-  }]
-
-  handleWin(poney: Poney): void{
-    console.log('WINNER: ', poney.name)
-    console.log('this.poneyComponents --> , this.poneyComponent', this.poneyComponents)
-    this.poneyComponents.forEach((PoneyComponent)=>{
-      console.log('PoneyComponent==> ', PoneyComponent)
-      PoneyComponent.stopRuning()
-    })
+  constructor(private dataService: DataService) {}
+  ngOnInit() {
+    this.dataService.races.subscribe({
+      next: races => {
+        this.races = races;
+      },
+      complete: () => {
+        console.log("yes end");
+      }
+    });
   }
-
-
 }

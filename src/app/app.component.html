@@ -1,9 +1,23 @@
-<amb-poney [poney]="poney" 
-           (win)="handleWin($event)"
-           *ngFor="let poney of ponies; let e = even"
-           #poneyComponents
-           ambBoost
-           color="red"
-           [isColor]="e">
-</amb-poney>
+<mat-toolbar color="primary"
+  >AmbiantIt
+  <button
+    routerLinkActive="active"
+    routerLink="/race-list"
+    href="/race-list"
+    mat-button
+  >
+    Race List
+  </button>
+  <button
+    routerLinkActive="active"
+    routerLink="/race-create"
+    href="/race-list"
+    mat-button
+  >
+    Create List
+  </button>
+</mat-toolbar>
+<!-- 
+<app-race [race]="race" *ngFor="let race of races">{{ race.name }}</app-race> -->
 
+<router-outlet></router-outlet>

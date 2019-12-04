@@ -1,6 +1,6 @@
-<div class="container" [style.left]="poney.distance + '%'">
-    <strong>
-        {{ poney.name }}
-    </strong>
-    <img [src]="poney.img">
+<div class="container" [style.left]="poney.distance | unit">
+  <mat-card>
+    {{ poney.name }}
+  </mat-card>
+  <img [src]="poney.img" />
 </div>
